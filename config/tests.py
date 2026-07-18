@@ -1,7 +1,7 @@
 from django.contrib.auth.models import AnonymousUser
 from django.test import RequestFactory, TestCase
 from django.http import HttpResponse
-from config.middlewares import AuthenticationMiddleware, MySessionMiddleware
+from config.middleware import AuthenticationMiddleware, MySessionMiddleware
 from app.models import Session
 from app.session import SessionStore
 from django.contrib.auth import get_user_model
