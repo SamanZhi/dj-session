@@ -32,7 +32,6 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
-    'django.contrib.sessions',
     'django.contrib.staticfiles',
     'users'
 ]
@@ -44,7 +43,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'config.middleware.AuthenticationMiddleware',
-    # 'config.middleware.YourSessionMiddleWare',
+    'config.middleware.MySessionMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
