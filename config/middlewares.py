@@ -29,6 +29,6 @@ class MySessionMiddleware:
 
     def process_request(self, request):
         request.session = SessionStore()
-
+        
     def process_response(self, request, response):
         return response

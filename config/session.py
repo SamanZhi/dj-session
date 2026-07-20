@@ -1,11 +1,23 @@
+import secrets
+
 class SessionStore:
     def __init__(self, session_key=None):
-        self.session_key = session_key
-        self._session = {}
+        self._session_key = session_key
+        self._session_cache = {}
 
         self.accessed = False
         self.modified = False
 
+        if self._session_key is None:
+            self._session_key = self._generate_session_key()
+
+    def _generate_session_key(self):
+        return secrets.token_hex(32)
+    
+    @property
+    def session_key(self):
+        return self._session_key
+    
     def __getitem__(self, key):
         self.accessed = True
         return self._session[key]
@@ -23,4 +35,5 @@ class SessionStore:
         return self._session.pop(key, default)
     
     def __contains__(self, key):
+        self.accessed = True
         return key in self._session
