@@ -6,14 +6,14 @@ User = get_user_model()
 
 
 def register(request):
-    if User.objects.filter(username='sepehr').exists():
+    if User.objects.filter(username='saman').exists():
         return HttpResponse("User already exists")
 
     user = User(
-        username='user',
-        email='user@gmail.com'
+        username='saman',
+        email='saman@gmail.com'
     )
-    user.set_password("1234")
+    user.set_password("saman")
     user.save()
 
     return HttpResponse("User created")
@@ -37,7 +37,6 @@ def login_view(request):
         return HttpResponse("Invalid username or password")
 
     return HttpResponse("Send a POST request with username and password.")
-
 
 
 def show_session(request):
