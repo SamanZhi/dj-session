@@ -29,8 +29,14 @@ class SessionStore:
         return self._session[key]
     
     def __setitem__(self, key, value):
+        self.accessed = True
         self.modified = True
         self._session[key] = value
+
+    def __delitem__(self, key):
+        self.accessed = True
+        self.modified = True
+        del self._session[key]
 
     def get(self, key, default=None):
         self.accessed = True
@@ -44,3 +50,25 @@ class SessionStore:
     def __contains__(self, key):
         self.accessed = True
         return key in self._session
+    
+    def __len__(self):
+        self.accessed = True
+        return len(self._session)
+    
+    def keys(self):
+        self.accessed = True
+        return self._session.keys()
+    
+    def values(self):
+        self.accessed = True
+        return self._session.values()
+    
+    def items(self):
+        self.accessed = True
+        return self._session.items()
+    
+    def clear(self):
+        self.accessed = True
+        self.modified = True
+        self._session.clear()
+    
