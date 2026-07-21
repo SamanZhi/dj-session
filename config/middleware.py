@@ -5,8 +5,6 @@ from django.utils.functional import SimpleLazyObject
 from .session import SessionStore
 
 
-SESSION_COOKIE_NAME = "sessionid"
-
 def get_user(request):
     if not hasattr(request, "_cached_user"):
         request._cached_user = auth.get_user(request)
@@ -28,11 +26,14 @@ class MySessionMiddleware:
         return self.process_response(request, response)
 
     def process_request(self, request):
-        session_key = request.COOKIES.get(SESSION_COOKIE_NAME)
+        session_key = request.COOKIES.get("sessionid")
         request.session = SessionStore(session_key)
         
     def process_response(self, request, response):
-        response.set_cookie(SESSION_COOKIE_NAME, request.session.session_key)
+        if request.session.modified:
+            request.session.save()
+
+        response.set_cookie("sessionid", request.session.session_key)
 
         return response
 
