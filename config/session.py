@@ -19,6 +19,13 @@ class SessionStore:
         sessions = Storage.load()
         sessions[self.session_key] = self._session
         Storage.save(sessions)
+
+    def delete(self):
+        sessions = Storage.load()
+
+        if self.session_key in sessions:
+            del sessions[self.session_key]
+            Storage.save(sessions)
     
     @property
     def session_key(self):
@@ -71,4 +78,13 @@ class SessionStore:
         self.accessed = True
         self.modified = True
         self._session.clear()
+
+    def flush(self):
+        self.delete()
+
+        self._session = {}
+        self._session_key = secrets.token_hex(16)
+
+        self.accessed = True
+        self.modified = True
     
