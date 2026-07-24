@@ -2,6 +2,7 @@ import secrets
 
 from .storage import Storage
 
+
 class SessionStore:
     def __init__(self, session_key=None):
         self._session_key = session_key

@@ -1,6 +1,5 @@
+from django.contrib.auth import authenticate, get_user_model, login
 from django.shortcuts import HttpResponse
-from django.contrib.auth import authenticate, login
-from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
