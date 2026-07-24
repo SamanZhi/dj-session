@@ -1,1 +1,7 @@
-{}
+{
+    "2951fe14fe88473033910bb0fe5c8fbb": {
+        "_auth_user_id": "2",
+        "_auth_user_backend": "django.contrib.auth.backends.ModelBackend",
+        "_auth_user_hash": "922b9ddb5d0ed85ed09e26e9f732c36c4bc52c49b9a763cec9bfe2bca81355ac"
+    }
+}

@@ -87,4 +87,15 @@ class SessionStore:
 
         self.accessed = True
         self.modified = True
+
+    def cycle_key(self):
+        data = self._session.copy()
+
+        self.delete()
+
+        self._session_key = secrets.token_hex(16)
+        self._session = data
+
+        self.modified = True
+        self.accessed = True
     

@@ -13,7 +13,7 @@ def register(request):
         username='saman',
         email='saman@gmail.com'
     )
-    user.set_password("saman")
+    user.set_password('saman')
     user.save()
 
     return HttpResponse("User created")
